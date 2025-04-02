@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bew04xyo0bgtt"]
+
+[ext_resource type="PackedScene" uid="uid://cf5afqwvybryh" path="res://assets/lights/ceiling_lamp.tscn" id="1_sjxdh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ypulm"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5j4g"]
+albedo_color = Color(0.306923, 0.306923, 0.306923, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sjxdh"]
+points = PackedVector3Array(0.111765, 4.02353, 0.111765, -0.123529, -4.02353, -0.0764291, -0.123529, -4.02353, 0.0646644, -0.123529, 4.02353, -0.0764291, 0.0646644, -4.02353, -0.123529, 0.111765, -4.02353, 0.111765, 0.0646644, 4.02353, -0.123529, -0.123529, 4.02353, 0.0646644)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pnb35"]
+size = Vector3(0.25, 0.25, 4.87)
+
+[node name="street_light" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("CylinderMesh_ypulm")
+surface_material_override/0 = SubResource("StandardMaterial3D_e5j4g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("ConvexPolygonShape3D_sjxdh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 1.60645)
+mesh = SubResource("BoxMesh_pnb35")
+surface_material_override/0 = SubResource("StandardMaterial3D_e5j4g")
+
+[node name="ceiling_lamp" parent="." instance=ExtResource("1_sjxdh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 7.91676, 3.74216)
+light_intensity = 5.0
+light_range = 25.0

@@ -1,0 +1,195 @@
+[gd_scene load_steps=15 format=4 uid="uid://des67xlxopqu3"]
+
+[ext_resource type="Script" uid="uid://d0eg0fe1nt002" path="res://interaction/interactables/toggle_interactable.gd" id="1_kqopn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bb7t"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pb5hq"]
+_surfaces = [{
+"aabb": AABB(-0.250411, -0.180993, -0.5, 0.500823, 0.185847, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_32rmu"]
+resource_name = "light_switch_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.250411, -0.180993, -0.5, 0.500823, 0.185847, 1),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_1bb7t"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAFTV////////VNX/////AABU1f//AAD//1TV//8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAP//AAD///////8AAP//AAD/////////////VNVU1VTVVNVU1VTVVNVU1f+//7//v/+//7//v/+//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pb5hq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32rmu"]
+albedo_color = Color(0.103744, 0.103744, 0.103744, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwrap"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5tptt"]
+_surfaces = [{
+"aabb": AABB(-0.161602, -0.125219, -0.402326, 0.323204, 0.412329, 0.409024),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAKmyAAAAAP//VU0AAAAAM0v//wAAAADLtAAAAAD/////VU0AAP//AACpsgAA//8zS///AAD//8u0AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kqopn"]
+resource_name = "light_switch_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.161602, -0.125219, -0.402326, 0.323204, 0.412329, 0.409024),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_hwrap"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAKmy18UAAP//VU3XxQAAM0v//9fFAADLtAAA18UAAMu0AABk6f////9VTWTpAAD//1VNZOn//8u0AABk6f//y7QAAPHp//8zS///8en/////VU3x6f//AACpsvHp//8AAKmyIcYAADNL//8hxv//M0v//yHGAAAAAKmyIcYAAMu0AABn4P//AACpsmfg///LtAAAZ+AAAAAAqbJn4P////9VTf//AAAzS/////8AAP//VU3/////M0v/////i7k544u5OeOLuTnji7k54+O047TjtOO047TjtOO047S0FSU1tBUlNbQVJTW0FSU1OB3G4jgdxuI4HcbiOB3G4gAA/38AAP9/AAD/fwAA/3//fxyl/38cpf9/HKX/fxyl")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_5tptt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqopn"]
+emission_enabled = true
+emission = Color(0.815686, 0.737255, 0.34902, 1)
+
+[sub_resource type="Animation" id="Animation_kqopn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("switch:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("switch:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_32rmu"]
+resource_name = "toggle_off"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("switch:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0419546, 0.0404598)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("switch:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.46508, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d3cnt"]
+resource_name = "toggle_on"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("switch:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.0419546, 0.0404598), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("switch:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.46508, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqopn"]
+_data = {
+&"RESET": SubResource("Animation_kqopn"),
+&"toggle_off": SubResource("Animation_32rmu"),
+&"toggle_on": SubResource("Animation_d3cnt")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqopn"]
+size = Vector3(0.178833, 0.147705, 0.384888)
+
+[node name="light_switch" type="Area3D" node_paths=PackedStringArray("anim_player")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_kqopn")
+anim_player = NodePath("AnimationPlayer")
+is_toggled = true
+
+[node name="base" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+mesh = SubResource("ArrayMesh_32rmu")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_32rmu")
+
+[node name="switch" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+mesh = SubResource("ArrayMesh_kqopn")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_kqopn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kqopn")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101929, 0.041626, -0.00238037)
+shape = SubResource("BoxShape3D_kqopn")

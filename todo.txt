@@ -1,0 +1,61 @@
+jump thru windows:
+	should carry momentum; currently comes to complete stop when vault complete
+	vaulting speed determined by linear velocity when vault starts?
+
+rotate carry objects
+
+swinging lights/grabbable
+
+hide in cabinets:
+	cabient has a very small step that blocks player from entering
+	works while standing after crouching at least once; doesn't work while crouching:
+		(is this because movement while not on the ground is cancelled?) THIS IS THE PROBELM
+
+waiting on jacob to finish sprites for interaction display lock,unlock,light,use_key
+
+monster:
+	player detection:
+		sight:
+			if player within cone of vision, check player detection_level (determined by light)
+			if player above light threshold (specific to monster), point raycast to player to check for collisions (update w/ timer)
+			if player collider found, begin chase (enum state state.chase/pursuit/hunt?)
+			if player leaves cone of vision after being spotted, begin timer (2 seconds?):
+				after timer, monster loses sight and searches last known location
+				search location and surrounding area, if no player, resume patrol
+		sound:
+			sound levels of furniture, doors, footsteps, thrown objects can attract certain monsters if above threshold
+
+sounds:
+	speed dependent:
+		when walking/running/crouching (both player and monster)
+		opening/slamming/locking/unlocking doors
+		drawers open/close
+	light buzz effect?
+	monster sounds
+	scary chase and ambient sounds/music
+
+main hub room: bedroom in house
+parts of house blocked off for safety
+monsters can still enter other parts of house to surprise player (followed/watched player go home?)
+
+bedroom contents:
+	bed to save game
+	computer for upgrades?
+	pet dog/cat?
+	mini fridge
+	lockable door with peephole
+	boarded up window with peephole
+	lightswitch
+	can hide under bed or in closet (monster can hide in closet?)
+
+main game loop idea:
+	wander neighborhood to gather supplies, items and upgrades:
+		supplies: food, pet food, water, lights
+		items: keys, throwables
+		upgrades: shoes, bags, helmets?
+	items/supplies found in drawers/cabinets/hidden areas:
+		can be found underneath trash/useless items (like clothing covering a hidden key)
+	some houses in heighborhood locked; need to find keys to open
+		some doors inside houses are also locked and need keys
+	parts of neighborhood blocked by monsters:
+		find correct item and/or solve puzzle to either kill/distract/sneak by monster

@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7he6orjiet12"]
+
+[ext_resource type="Script" uid="uid://htpysbskaop4" path="res://monsters/monster.gd" id="1_ft8s1"]
+[ext_resource type="Script" uid="uid://1wk7wjodryeb" path="res://monsters/target_detection.gd" id="2_7d0jg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_il1c4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g6vcp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_betx1"]
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iu3xu"]
+radius = 12.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0tehg"]
+points = PackedVector3Array(0, 0, 0, 0, 2, 0, 25, 0, -15, 25, 15, -15, -25, 0, -15, -25, 15, -15)
+
+[node name="Monster" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wait_timer", "raycast_to_target")]
+script = ExtResource("1_ft8s1")
+nav_agent = NodePath("NavigationAgent3D")
+wait_timer = NodePath("NavigationAgent3D/WaitTimer")
+raycast_to_target = NodePath("TargetDetection")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_il1c4")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_g6vcp")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329485, -0.339147)
+mesh = SubResource("BoxMesh_betx1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.0
+
+[node name="WaitTimer" type="Timer" parent="NavigationAgent3D"]
+
+[node name="Hearing" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hearing"]
+shape = SubResource("SphereShape3D_iu3xu")
+
+[node name="Vision" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vision"]
+shape = SubResource("ConvexPolygonShape3D_0tehg")
+
+[node name="TargetDetection" type="RayCast3D" parent="."]
+script = ExtResource("2_7d0jg")
+
+[connection signal="timeout" from="NavigationAgent3D/WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="body_entered" from="Hearing" to="." method="_on_hearing_body_entered"]
+[connection signal="body_exited" from="Hearing" to="." method="_on_hearing_body_exited"]
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
