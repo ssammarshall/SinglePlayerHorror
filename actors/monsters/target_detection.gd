@@ -19,7 +19,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not target: return
 	var direction_to_target := (global_position - target.global_position)
-	print(-global_transform.basis.z.angle_to(direction_to_target)) # this
+	#print(-global_transform.basis.z.angle_to(direction_to_target)) # this
 
 func _on_update_timer_timeout() -> void:
 	pass

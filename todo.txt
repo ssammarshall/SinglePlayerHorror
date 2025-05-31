@@ -1,17 +1,15 @@
-jump thru windows:
-	should carry momentum; currently comes to complete stop when vault complete
-	vaulting speed determined by linear velocity when vault starts?
-
 rotate carry objects
+
+light bulb should change color when off
 
 swinging lights/grabbable
 
-hide in cabinets:
-	cabient has a very small step that blocks player from entering
-	works while standing after crouching at least once; doesn't work while crouching:
-		(is this because movement while not on the ground is cancelled?) THIS IS THE PROBELM
+inventory handler class
 
-waiting on jacob to finish sprites for interaction display lock,unlock,light,use_key
+hide in cabinets:
+	cabinet collision needs to be fixed
+	
+	works while standing after crouching at least once; doesn't work while crouching:
 
 monster:
 	player detection:

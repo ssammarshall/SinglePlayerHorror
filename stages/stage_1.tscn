@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://du56gg1vga66i"]
+[gd_scene load_steps=24 format=3 uid="uid://du56gg1vga66i"]
 
 [ext_resource type="Texture2D" uid="uid://dsxqgde1fg1pc" path="res://imports/textures/concrete_rock_path_diff_2k.png" id="1_flc47"]
 [ext_resource type="Texture2D" uid="uid://b2k1b21673rnu" path="res://imports/textures/concrete_rock_path_nor_dx_2k.png" id="2_tfugh"]
@@ -6,19 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://b0wj0j3bwpoy3" path="res://imports/textures/sparse_grass_diff_2k.png" id="4_dhge1"]
 [ext_resource type="Texture2D" uid="uid://cqqym1y0e0rfn" path="res://imports/textures/sparse_grass_nor_dx_2k.png" id="5_8d3rj"]
 [ext_resource type="Texture2D" uid="uid://bl8y86pn1he2u" path="res://imports/textures/sparse_grass_rough_2k.png" id="6_7u0vq"]
-[ext_resource type="PackedScene" uid="uid://c6bllm7w61c4k" path="res://player/player.tscn" id="7_m7yti"]
-[ext_resource type="PackedScene" uid="uid://b7he6orjiet12" path="res://monsters/monster.tscn" id="8_od8eh"]
+[ext_resource type="PackedScene" uid="uid://c6bllm7w61c4k" path="res://actors/player/player.tscn" id="7_m7yti"]
+[ext_resource type="PackedScene" uid="uid://b7he6orjiet12" path="res://actors/monsters/monster.tscn" id="8_od8eh"]
 [ext_resource type="PackedScene" uid="uid://cf5afqwvybryh" path="res://assets/lights/ceiling_lamp.tscn" id="10_18igh"]
+[ext_resource type="PackedScene" uid="uid://b3q2wtcgx01ne" path="res://assets/houses/bed_room.tscn" id="11_p7cgj"]
 [ext_resource type="PackedScene" uid="uid://d0v1fqbkaujjv" path="res://assets/houses/house_demo.tscn" id="12_o4n7p"]
 [ext_resource type="PackedScene" uid="uid://bew04xyo0bgtt" path="res://assets/lights/street_light.tscn" id="12_p7cgj"]
+[ext_resource type="PackedScene" uid="uid://1okpp8ga64re" path="res://assets/houses/room_2.tscn" id="14_43q35"]
 [ext_resource type="PackedScene" uid="uid://d08xd15384tci" path="res://assets/items/test_item.tscn" id="14_xe06v"]
+[ext_resource type="PackedScene" uid="uid://m82nifqk53jd" path="res://assets/houses/room_3.tscn" id="15_1fhdr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fq0ae"]
 sky_top_color = Color(0.117412, 0.167107, 0.292432, 1)
 sky_horizon_color = Color(0.0454912, 0.0477864, 0.0514095, 1)
 sky_cover_modulate = Color(0.533037, 0.533037, 0.533037, 1)
 ground_bottom_color = Color(0.00458467, 0.0345541, 0.0185009, 1)
-ground_horizon_color = Color(0.310964, 0.318805, 0.331183, 1)
+ground_horizon_color = Color(0.00392157, 0.0352941, 0.0196078, 1)
 
 [sub_resource type="Sky" id="Sky_f6yry"]
 sky_material = SubResource("ProceduralSkyMaterial_fq0ae")
@@ -29,12 +32,13 @@ sky = SubResource("Sky_f6yry")
 tonemap_mode = 3
 sdfgi_enabled = true
 glow_enabled = true
-fog_enabled = true
-fog_light_color = Color(0.210757, 0.23209, 0.265627, 1)
+fog_light_color = Color(0.30376, 0.33149, 0.375079, 1)
 fog_light_energy = 0.15
-fog_sun_scatter = 0.1
-fog_density = 0.02
-volumetric_fog_albedo = Color(0.194349, 0.194349, 0.194349, 1)
+fog_density = 0.05
+fog_sky_affect = 0.9
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.133196, 0.133196, 0.133196, 1)
+volumetric_fog_emission = Color(0.28485, 0.28485, 0.28485, 1)
 volumetric_fog_emission_energy = 0.1
 volumetric_fog_length = 128.0
 adjustment_enabled = true
@@ -82,7 +86,7 @@ shadow_enabled = true
 environment = SubResource("Environment_bjmvx")
 
 [node name="Player" parent="." instance=ExtResource("7_m7yti")]
-transform = Transform3D(0.759453, 0, -0.650562, 0, 1, 0, 0.650562, 0, 0.759453, 43.0403, 0.5, 26.4751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3519, 0.5, 14.9123)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182289, -0.11264, -0.170235)
@@ -354,6 +358,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.6648, -0.696081, -11.4435
 [node name="street_light4" parent="NavigationRegion3D" instance=ExtResource("12_p7cgj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.4016, -0.696081, -11.4435)
 
+[node name="step1" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, -0.41937, -16.6869)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, -0.744321, -18.076)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 0.0596457, -19.4468)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 0.226747, -20.8333)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step5" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, -0.098204, -22.2223)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step6" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 0.705763, -23.5932)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step7" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 0.979436, -25.188)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step8" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 0.654485, -26.5771)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step9" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8939, 1.45845, -27.9479)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="bed_room" parent="NavigationRegion3D" instance=ExtResource("11_p7cgj")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 83.9224, -0.508336, 19.3698)
+
+[node name="ceiling_lamp" parent="NavigationRegion3D/bed_room" instance=ExtResource("10_18igh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34372, 6.33631, 1.62151)
+light_intensity = 6.175
+light_range = 19.14
+
 [node name="TestItem" parent="." instance=ExtResource("14_xe06v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.8498, -0.281939, 19.7887)
 
@@ -376,7 +433,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.4129, 0, -10.5906)
 [node name="4" type="Marker3D" parent="monster_path_pos"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98199, 0, 36.7499)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.4627, -0.856961, 10.2444)
-use_collision = true
-size = Vector3(10.0381, 1, 1)
+[node name="room2" parent="." instance=ExtResource("14_43q35")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.3302, -0.622643, 14.6904)
+
+[node name="room3" parent="." instance=ExtResource("15_1fhdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.0883, -0.662032, 14.4589)

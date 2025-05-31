@@ -1,0 +1,572 @@
+[gd_scene load_steps=30 format=4 uid="uid://c6bllm7w61c4k"]
+
+[ext_resource type="Script" uid="uid://bgldpmstdq60k" path="res://actors/player/player.gd" id="1_nt586"]
+[ext_resource type="Script" uid="uid://cp010v0jqujqa" path="res://actors/components/interaction_handler.gd" id="2_eglrj"]
+[ext_resource type="Script" uid="uid://d4m8si3lcu2a5" path="res://actors/player/camera_rig.gd" id="2_ov830"]
+[ext_resource type="Script" uid="uid://cbe3xnit3rnfk" path="res://actors/components/movement_handler.gd" id="2_rt46e"]
+[ext_resource type="Script" uid="uid://bef26khsp6qa4" path="res://actors/player/flashlight.gd" id="3_1kxa6"]
+[ext_resource type="Script" uid="uid://b0e6a74fl1cho" path="res://ui/interaction_display.gd" id="5_boad6"]
+[ext_resource type="Texture2D" uid="uid://3y0oo6n6ss2e" path="res://assets/images/interact_dot.png" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://w1uwqq45pes3" path="res://ui/player_gui.gd" id="6_0wchr"]
+[ext_resource type="Texture2D" uid="uid://kk2y6r3pylre" path="res://assets/images/interact_circle.png" id="7_rgyib"]
+[ext_resource type="Texture2D" uid="uid://l8dxlidn3mi1" path="res://assets/images/key_icon.png" id="8_8t03j"]
+[ext_resource type="Script" uid="uid://cx7ggn6tjlfch" path="res://ui/inventory.gd" id="8_rgyib"]
+[ext_resource type="Texture2D" uid="uid://bgrpj1caxsr4" path="res://assets/images/locked.png" id="8_wodsf"]
+[ext_resource type="Texture2D" uid="uid://cm66ffa1inagd" path="res://assets/images/unlocked.png" id="9_32hag"]
+[ext_resource type="Script" uid="uid://eextnr1ig7pu" path="res://ui/inventory_slot.gd" id="9_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://ro1mqh8ig01m" path="res://assets/images/light_on.png" id="10_tqiix"]
+[ext_resource type="Script" uid="uid://cravcmalij2lb" path="res://actors/components/light_detection_handler.gd" id="11_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://hc47xbkrlccf" path="res://assets/images/light_off.png" id="11_e7oew"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hg6s5"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7hch"]
+radius = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5ako"]
+radius = 0.2
+height = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_rt46e"]
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2sm2i"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ic477"]
+_surfaces = [{
+"aabb": AABB(-0.7236, -0.00917059, -0.85064, 1.61802, 0.552785, 1.70128),
+"format": 34896613377,
+"index_count": 15,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAABAAAAAwABAAUABQABAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("Np4AAP//AAB8cv///38AAP//AAD/fwAANp4AAAAAAAAAAAAAGs8AAAAAAADkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2ieo8"]
+resource_name = "untitled_Icosphere"
+_surfaces = [{
+"aabb": AABB(-0.7236, -0.00917059, -0.85064, 1.61802, 0.552785, 1.70128),
+"attribute_data": PackedByteArray("iy5gr9FFEYcWXWCvAABgr0UXEYeLLmCvLbpgr3PREYe56GCvootgr+iiEYctumCvFl1gr1x0EYeii2Cv"),
+"format": 34896613399,
+"index_count": 15,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4A"),
+"material": SubResource("StandardMaterial3D_2sm2i"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 15,
+"vertex_data": PackedByteArray("Np4AAP//nLR8cv///3+ctP//AAD/f5y0AAAAABrPZad8cv///39lpzaeAAD//2WnAAAAAOQwDch8cv///38NyAAAAAAazw3INp4AAAAAiPR8cv///3+I9AAAAADkMIj0//8AAP9/2N18cv///3/Y3TaeAAAAANjdEsxlMhLMZTISzGUyj9a5m4/WuZuP1rmb0Z9awNGfWsDRn1rAX4Zh0V+GYdFfhmHRtLZ3ErS2dxK0tncS")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ic477")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ieo8"]
+albedo_color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[sub_resource type="Animation" id="Animation_8qbma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xhann"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.4, 0), Vector3(0, 0.5, 0), Vector3(0, 0.5, 0), Vector3(0, -0.15, 0), Vector3(0, -0.1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ceqa6"]
+resource_name = "stand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.1, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.45, 0), Vector3(0, 0.4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c105e"]
+_data = {
+&"RESET": SubResource("Animation_8qbma"),
+&"crouch": SubResource("Animation_xhann"),
+&"stand": SubResource("Animation_ceqa6")
+}
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("standing_collision", "crouching_collision", "crouching_ray_cast", "ground_ray_cast", "movement_handler", "foot_marker")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 80.0
+physics_material_override = SubResource("PhysicsMaterial_hg6s5")
+gravity_scale = 1.5
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_nt586")
+standing_collision = NodePath("StandingCollision")
+crouching_collision = NodePath("CrouchingCollision")
+crouching_ray_cast = NodePath("CrouchingCollision/CrouchingRayCast")
+ground_ray_cast = NodePath("StandingCollision/GroundRayCast")
+movement_handler = NodePath("MovementHandler")
+foot_marker = NodePath("FootMarker")
+
+[node name="StandingCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_n7hch")
+
+[node name="GroundRayCast" type="RayCast3D" parent="StandingCollision"]
+target_position = Vector3(0, -1.1, 0)
+
+[node name="CrouchingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CapsuleShape3D_h5ako")
+disabled = true
+
+[node name="CrouchingRayCast" type="RayCast3D" parent="CrouchingCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+target_position = Vector3(0, 2.01, 0)
+
+[node name="MovementHandler" type="Node3D" parent="." node_paths=PackedStringArray("vaulting_raycast", "step_raycast", "step_height_raycast", "wall_raycast")]
+script = ExtResource("2_rt46e")
+vaulting_raycast = NodePath("VaultingRaycast")
+step_raycast = NodePath("StepRaycast")
+step_height_raycast = NodePath("WallRaycast/StepHeightRaycast")
+wall_raycast = NodePath("WallRaycast")
+metadata/_custom_type_script = "uid://cbe3xnit3rnfk"
+
+[node name="VaultingRaycast" type="RayCast3D" parent="MovementHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+target_position = Vector3(0, 0, -1)
+collision_mask = 4
+
+[node name="StepRaycast" type="RayCast3D" parent="MovementHandler"]
+transform = Transform3D(1, -2.65169e-09, 2.76486e-10, -6.9079e-10, 1, 0, 4.22006e-10, 2.32831e-10, 1, 0, -1, 0)
+target_position = Vector3(0, 0, -0.25)
+
+[node name="WallRaycast" type="RayCast3D" parent="MovementHandler"]
+transform = Transform3D(1, -2.65169e-09, 2.76486e-10, -6.9079e-10, 1, 0, 4.22006e-10, 2.32831e-10, 1, 4.67196e-10, -0.682385, -3.0268e-09)
+target_position = Vector3(0, 0, -0.25)
+
+[node name="StepHeightRaycast" type="RayCast3D" parent="MovementHandler/WallRaycast"]
+transform = Transform3D(1, -2.3283e-10, -2.9104e-11, -2.32859e-10, 1, 2.32831e-10, 0, -2.32831e-10, 1, 0, 0, -0.25)
+target_position = Vector3(0, -0.312, 0)
+
+[node name="ui" type="CanvasLayer" parent="."]
+script = ExtResource("6_0wchr")
+
+[node name="interaction_display" type="Control" parent="ui" node_paths=PackedStringArray("dot", "circle", "locked", "unlocked", "light_on", "light_off", "lock_door", "unlock_door", "no_key")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_boad6")
+dot = NodePath("dot")
+circle = NodePath("circle")
+locked = NodePath("locked")
+unlocked = NodePath("unlocked")
+light_on = NodePath("light on")
+light_off = NodePath("light off")
+lock_door = NodePath("lock door")
+unlock_door = NodePath("unlock door")
+no_key = NodePath("no key")
+
+[node name="dot" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_qjkh3")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="circle" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_rgyib")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="locked" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_wodsf")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="unlocked" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_32hag")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="light on" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_tqiix")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="light off" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_e7oew")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="lock door" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.32485
+texture = ExtResource("8_8t03j")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="unlock door" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.32485
+texture = ExtResource("8_8t03j")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="no key" type="TextureRect" parent="ui/interaction_display"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.32485
+texture = ExtResource("8_8t03j")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Timer" type="Timer" parent="ui/interaction_display"]
+wait_time = 0.5
+one_shot = true
+
+[node name="inventory" type="PanelContainer" parent="ui" node_paths=PackedStringArray("inventory_slots")]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_rgyib")
+inventory_slots = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/Panel/slot_1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/Panel2/slot_2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Panel/slot_3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Panel2/slot_4"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Panel/slot_5"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Panel2/slot_6"), NodePath("MarginContainer/VBoxContainer/HBoxContainer4/Panel/slot_7"), NodePath("MarginContainer/VBoxContainer/HBoxContainer4/Panel2/slot_8")]
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/inventory/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_1" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_2" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_3" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_4" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_5" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_6" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_7" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_8" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="ColorRect" type="ColorRect" parent="ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -178.0
+offset_bottom = 146.0
+grow_horizontal = 0
+
+[node name="FPS" type="Label" parent="ui"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS"
+label_settings = SubResource("LabelSettings_rt46e")
+
+[node name="LightDetectionHandler" type="SubViewport" parent="." node_paths=PackedStringArray("follow_target", "light_detector", "dark_adaptation_light", "update_timer")]
+script = ExtResource("11_2ieo8")
+follow_target = NodePath("../CameraRig/Base")
+light_detector = NodePath("LightDetector")
+dark_adaptation_light = NodePath("../CameraRig/Base/SpringArm3D/Camera3D/DarkAdaptationLight")
+update_timer = NodePath("Timer")
+
+[node name="LightDetector" type="Node3D" parent="LightDetectionHandler"]
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="LightDetectionHandler/LightDetector"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+cull_mask = 524288
+
+[node name="detection_mesh" type="MeshInstance3D" parent="LightDetectionHandler/LightDetector"]
+transform = Transform3D(1.23592, 0, 0.403124, 0, 1, 0, -0.403124, 0, 1.23592, -0.001, -0.606, 0.002)
+layers = 524288
+mesh = SubResource("ArrayMesh_2ieo8")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ieo8")
+
+[node name="Timer" type="Timer" parent="LightDetectionHandler"]
+wait_time = 0.1
+autostart = true
+
+[node name="FootMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CameraRig" type="Node" parent="."]
+script = ExtResource("2_ov830")
+
+[node name="Base" type="Node3D" parent="CameraRig"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+spring_length = 0.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/Base/SpringArm3D"]
+cull_mask = 524287
+current = true
+
+[node name="Flashlight" type="SpotLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.1, 0)
+light_color = Color(0.999998, 0.99883, 0.653463, 1)
+light_energy = 5.0
+light_volumetric_fog_energy = 8.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 100.0
+spot_attenuation = 2.0
+spot_angle = 35.0
+spot_angle_attenuation = 3.60499
+script = ExtResource("3_1kxa6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D/Flashlight"]
+layers = 524289
+light_color = Color(1, 1, 0.654902, 1)
+light_energy = 0.5
+omni_range = 1.0
+
+[node name="InteractionHandler" type="RayCast3D" parent="CameraRig/Base/SpringArm3D/Camera3D" node_paths=PackedStringArray("player", "interaction_display", "marker")]
+target_position = Vector3(0, 0, -2)
+collision_mask = 31
+collide_with_areas = true
+script = ExtResource("2_eglrj")
+player = NodePath("../../../../..")
+interaction_display = NodePath("../../../../../ui/interaction_display")
+marker = NodePath("Marker3D")
+throw_charge_speed = 1.5
+
+[node name="Marker3D" type="Marker3D" parent="CameraRig/Base/SpringArm3D/Camera3D/InteractionHandler"]
+transform = Transform3D(1, 3.37394e-10, 0, -1.19655e-11, 1, -1.39698e-09, 4.36557e-11, 0, 1, -5.82077e-11, 2.98023e-08, -1.5)
+
+[node name="DarkAdaptationLight" type="OmniLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D"]
+light_color = Color(0.276946, 0.364545, 0.631735, 1)
+light_energy = 0.75
+light_indirect_energy = 0.1
+light_size = 6.0
+light_specular = 0.0
+distance_fade_enabled = true
+distance_fade_begin = 0.5
+distance_fade_length = 3.0
+omni_range = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraRig/Base"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_c105e")
+}
+speed_scale = 3.0

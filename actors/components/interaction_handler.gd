@@ -29,6 +29,7 @@ var carriable_object: CarryInteractable:
 			is_handling_object = true
 		else: is_handling_object = false
 var is_handling_object := false
+var is_rotating_object := false
 var item: Item:
 	set(new_item):
 		if item: item.highlight(false)
@@ -59,7 +60,7 @@ func _handle_objects() -> void:
 		var cam_basis := player.camera_rig.global_transform.basis
 		var move_direction := cam_basis.z * mouse_dir.y
 		move_direction += cam_basis.x * mouse_dir.x
-		var player_input_direction := player.input_dir * cam_basis * 10
+		var player_input_direction := player.movement_direction * cam_basis * 10
 		dragable_object.manipulate(move_direction + player_input_direction)
 		mouse_dir = Vector2.ZERO
 		distance_check(dragable_object)
@@ -127,7 +128,6 @@ func throw() -> void:
 		is_charging_throw = true
 		return
 	
-	#camera_rig.forward 
 	var direction := player.camera_rig.forward * player.throw_strength * (1 + current_throw_charge_amount)
 	if dragable_object:
 		dragable_object.apply_central_impulse(direction)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://d0v1fqbkaujjv"]
+[gd_scene load_steps=30 format=4 uid="uid://d0v1fqbkaujjv"]
 
 [ext_resource type="PackedScene" uid="uid://cf5afqwvybryh" path="res://assets/lights/ceiling_lamp.tscn" id="1_0o8fk"]
 [ext_resource type="PackedScene" uid="uid://des67xlxopqu3" path="res://assets/lights/light_switch.tscn" id="2_t6pem"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://clvsxjhkk2445" path="res://assets/items/house_key.tscn" id="5_ckict"]
 [ext_resource type="PackedScene" uid="uid://c5daalu2ogcaa" path="res://assets/vault_object.tscn" id="6_vnrxy"]
 [ext_resource type="PackedScene" uid="uid://ceeaohfwwc5wl" path="res://assets/furniture/closet.tscn" id="7_po8ex"]
-[ext_resource type="PackedScene" uid="uid://bim6thhxam1yj" path="res://assets/lights/hanging_light.tscn" id="8_txhni"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw3k6"]
 
@@ -234,7 +233,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.98671, -0.302729, -4.32993)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0171318, 0.806822, -0.0441362)
 
 [node name="house_key" parent="." instance=ExtResource("5_ckict")]
-transform = Transform3D(0.752484, 0, 0.658611, 0, 1, 0, -0.658611, 0, 0.752484, 8.81017, 0.605489, -4.46022)
+transform = Transform3D(0.752484, 0, 0.658611, 0, 1, 0, -0.658611, 0, 0.752484, 8.81017, 0.279727, -4.46022)
 
 [node name="Vault Object" parent="." instance=ExtResource("6_vnrxy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0012207, 0.00610352, 3.00247)
@@ -250,6 +249,3 @@ size = Vector3(4.00418, 1.01221, 1.02832)
 
 [node name="Closet" parent="." instance=ExtResource("7_po8ex")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.8561, -0.489444, -1.13077)
-
-[node name="Hanging Light" parent="." instance=ExtResource("8_txhni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4443, 2.97673, -1.78096)

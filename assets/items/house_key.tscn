@@ -70,8 +70,6 @@ emission = Color(1, 1, 1, 1)
 [node name="house_key" type="RigidBody3D" node_paths=PackedStringArray("highlight_mesh")]
 collision_layer = 3
 mass = 0.35
-freeze = true
-freeze_mode = 1
 script = ExtResource("1_vusaq")
 item_data = SubResource("Resource_5ifvi")
 highlight_mesh = NodePath("highlight")

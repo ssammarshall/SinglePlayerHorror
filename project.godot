@@ -23,6 +23,21 @@ SignalBus="*res://signal_bus.gd"
 
 gdscript/warnings/unused_signal=0
 
+[file_customization]
+
+folder_colors={
+"res://actors/": "red",
+"res://assets/": "orange",
+"res://assets/doors/": "red",
+"res://assets/houses/": "blue",
+"res://assets/images/": "purple",
+"res://assets/lights/": "yellow",
+"res://imports/": "gray",
+"res://interaction/": "yellow",
+"res://stages/": "green",
+"res://ui/": "purple"
+}
+
 [input]
 
 forward={

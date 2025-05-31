@@ -79,7 +79,7 @@ func _on_vision_body_entered(body: Node3D) -> void:
 		var player := body as Player
 		if player.detection_level > light_detection_minimum:
 			state = State.Chase
-			print("its coming to kill you")
+			#print("its coming to kill you")
 
 
 func _on_vision_body_exited(body: Node3D) -> void:

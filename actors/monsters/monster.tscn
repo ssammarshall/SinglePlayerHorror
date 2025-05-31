@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7he6orjiet12"]
 
-[ext_resource type="Script" uid="uid://htpysbskaop4" path="res://monsters/monster.gd" id="1_ft8s1"]
-[ext_resource type="Script" uid="uid://1wk7wjodryeb" path="res://monsters/target_detection.gd" id="2_7d0jg"]
+[ext_resource type="Script" uid="uid://htpysbskaop4" path="res://actors/monsters/monster.gd" id="1_ft8s1"]
+[ext_resource type="Script" uid="uid://1wk7wjodryeb" path="res://actors/monsters/target_detection.gd" id="2_7d0jg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_il1c4"]
 
