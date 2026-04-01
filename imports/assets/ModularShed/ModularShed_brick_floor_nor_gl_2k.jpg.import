@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bqqf20uvwiu7s"
+path.s3tc="res://.godot/imported/ModularShed_brick_floor_nor_gl_2k.jpg-90472c63e08e69e1c818be4e837c75e5.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "fe7e84c1fbbe23d372887306f4eb6f89"
+}
+
+[deps]
+
+source_file="res://imports/assets/ModularShed/ModularShed_brick_floor_nor_gl_2k.jpg"
+dest_files=["res://.godot/imported/ModularShed_brick_floor_nor_gl_2k.jpg-90472c63e08e69e1c818be4e837c75e5.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://imports/assets/ModularShed/ModularShed_brick_floor_nor_gl_2k.jpg"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

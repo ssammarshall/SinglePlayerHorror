@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=4 uid="uid://b5phunnipqbf4"]
+
+[ext_resource type="Script" uid="uid://baev8wytav2u1" path="res://interaction/interactables/physics_interactables/carry_interactables/carry_interactable.gd" id="1_0v45k"]
+[ext_resource type="Texture2D" uid="uid://2esyiejink3y" path="res://imports/assets/cardboard_box_0.png" id="2_ktmvl"]
+[ext_resource type="Texture2D" uid="uid://ch4tss3o2blvb" path="res://imports/assets/cardboard_box_1.png" id="3_irt6x"]
+[ext_resource type="Texture2D" uid="uid://cvjgcpcspa6ap" path="res://imports/assets/cardboard_box_2.png" id="4_pej4c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7hca"]
+resource_name = "lambert1"
+cull_mode = 2
+albedo_texture = ExtResource("2_ktmvl")
+metallic = 1.0
+metallic_texture = ExtResource("3_irt6x")
+metallic_texture_channel = 2
+roughness = 0.6
+roughness_texture = ExtResource("3_irt6x")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("4_pej4c")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xi1gf"]
+_surfaces = [{
+"aabb": AABB(-37.77778, -19.444447, -30.55556, 75.55556, 38.888893, 61.11112),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAgABAAQAAwAEAAEABQAAAAIABQADAAAAAgAEAAYABQACAAYAAwAHAAQABQAHAAMABwAGAAQABwAFAAYA"),
+"name": "lambert1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD///////8AAP//AAD//wAAAAD/////AAD/////AAAAAAAAAAAAAAAA//8AAAAAAAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_elp5a"]
+resource_name = "Sketchfab_Scene_CardboardBox_LP_lambert1_0"
+_surfaces = [{
+"aabb": AABB(-37.77778, -19.444447, -30.55556, 75.55556, 38.888893, 61.11112),
+"attribute_data": PackedByteArray("danhrEZZSoX1WTWuxqj2g8ao9oMyWPxERllKhbOnqEOzp6hDg1cRHDJY/EQEp70aiKou7fVZNa4IW4PudanhrFow+YUyWPxERy+sRUZZSoWe0PlCxqj2g7HRRoOzp6hD"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_d7hca"),
+"name": "lambert1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//UP////////9Q////AAD//1D/AAD/////UP8AAP////+D//////8AAIP/////////g/8AAP//AACD/wAA//8AAP////8AAAAA////////AAD//wAAAAAAAP//AAAAAAAAg////wAA//+D////AAAAAIP/AAAAAP//g////wAA//+51f////8AALnV//8AAAAAudX///////+51QAAAAAAAPDUAAD/////8NQAAAAA///w1AAA//8AAPDU/3//f/9//3//f/9//3//f4eAu7+HgLu/h4C7v4eAu78Pge/+D4Hv/g+B7/4Pge/+d39DQHd/Q0B3f0NAd39DQDEq5yoxKucqMSrnKjEq5yqSVSSrklUkq5JVJKuSVSSr")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_xi1gf")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j2dud"]
+size = Vector3(0.76, 0.391, 0.615)
+
+[node name="CardboardBox" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 409
+mass = 5.0
+angular_damp_mode = 1
+angular_damp = 1.0
+script = ExtResource("1_0v45k")
+metadata/_custom_type_script = "uid://baev8wytav2u1"
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+mesh = SubResource("ArrayMesh_elp5a")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00091552734, 0)
+shape = SubResource("BoxShape3D_j2dud")

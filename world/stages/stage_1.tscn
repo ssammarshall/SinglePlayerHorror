@@ -1,0 +1,305 @@
+[gd_scene load_steps=20 format=3 uid="uid://du56gg1vga66i"]
+
+[ext_resource type="PackedScene" uid="uid://c6bllm7w61c4k" path="res://actors/player/player.tscn" id="1_lyjca"]
+[ext_resource type="Texture2D" uid="uid://b0wj0j3bwpoy3" path="res://imports/textures/sparse_grass_diff_2k.png" id="2_7dv8r"]
+[ext_resource type="Texture2D" uid="uid://cqqym1y0e0rfn" path="res://imports/textures/sparse_grass_nor_dx_2k.png" id="3_88jja"]
+[ext_resource type="Texture2D" uid="uid://bl8y86pn1he2u" path="res://imports/textures/sparse_grass_rough_2k.png" id="4_1v6gw"]
+[ext_resource type="Texture2D" uid="uid://dsxqgde1fg1pc" path="res://imports/textures/concrete_rock_path_diff_2k.png" id="5_rrd7v"]
+[ext_resource type="Texture2D" uid="uid://b2k1b21673rnu" path="res://imports/textures/concrete_rock_path_nor_dx_2k.png" id="6_2mu0g"]
+[ext_resource type="Texture2D" uid="uid://b7e68nygs47rl" path="res://imports/textures/concrete_rock_path_rough_2k.png" id="7_pa2w6"]
+[ext_resource type="PackedScene" uid="uid://bew04xyo0bgtt" path="res://interaction/lights/street_light.tscn" id="8_q6gni"]
+[ext_resource type="PackedScene" uid="uid://d0v1fqbkaujjv" path="res://world/houses/house_demo.tscn" id="9_uhrc8"]
+[ext_resource type="PackedScene" uid="uid://cfin2jtb15fov" path="res://world/houses/cottage_house_2.tscn" id="10_jh8yp"]
+[ext_resource type="PackedScene" uid="uid://c4r0ytvd2cqwy" path="res://world/houses/modular_shed.tscn" id="11_mk0nq"]
+[ext_resource type="PackedScene" uid="uid://ddq18l2e8cca5" path="res://vehicles/test_van.tscn" id="15_l72xu"]
+[ext_resource type="PackedScene" uid="uid://b5phunnipqbf4" path="res://interaction/interactables/physics_interactables/carry_interactables/packages/cardboard_box.tscn" id="16_nqahc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lyjca"]
+sky_top_color = Color(0.17730924, 0.3086135, 0.49484867, 1)
+
+[sub_resource type="Sky" id="Sky_f6yry"]
+sky_material = SubResource("ProceduralSkyMaterial_lyjca")
+
+[sub_resource type="Environment" id="Environment_bjmvx"]
+background_mode = 2
+sky = SubResource("Sky_f6yry")
+tonemap_mode = 3
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.30376, 0.33149, 0.375079, 1)
+fog_light_energy = 0.15
+fog_density = 0.05
+fog_sky_affect = 0.9
+adjustment_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jvwxx"]
+agent_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v7fq"]
+albedo_texture = ExtResource("2_7dv8r")
+roughness_texture = ExtResource("4_1v6gw")
+normal_enabled = true
+normal_texture = ExtResource("3_88jja")
+uv2_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3wxn"]
+albedo_texture = ExtResource("5_rrd7v")
+roughness_texture = ExtResource("7_pa2w6")
+normal_enabled = true
+normal_texture = ExtResource("6_2mu0g")
+uv2_triplanar = true
+
+[node name="Stage1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+layers = 524289
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bjmvx")
+
+[node name="Player" parent="." instance=ExtResource("1_lyjca")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24.1386, 2.197186, 6.5604134)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182289, -0.11264, -0.170235)
+navigation_mesh = SubResource("NavigationMesh_jvwxx")
+
+[node name="Map" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02, 0)
+layers = 4
+use_collision = true
+size = Vector3(1000, 1, 1000)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block001" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02, 0)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Steps" type="Node3D" parent="NavigationRegion3D/Map/Block001"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 9.717888, -1.02, 23.709267)
+
+[node name="step1" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 0.60063, 5.4749475)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step2" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 0.275679, 4.0858464)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step3" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 1.0796458, 2.7150462)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step4" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 1.246747, 1.3285469)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step5" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 0.92179596, -0.060453102)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step6" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 1.725763, -1.4313542)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step7" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 1.9994359, -3.0261533)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="step8" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 1.674485, -4.415254)
+use_collision = true
+size = Vector3(10.038, 1.5, 1.71875)
+
+[node name="step9" type="CSGBox3D" parent="NavigationRegion3D/Map/Block001/Steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7022971, 2.4784498, -5.786054)
+use_collision = true
+size = Vector3(10.0381, 0.350098, 1.72949)
+
+[node name="house_demo" parent="NavigationRegion3D/Map/Block001" instance=ExtResource("9_uhrc8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.016808, 2.2351742e-08, 15.673)
+
+[node name="street_light" parent="NavigationRegion3D/Map/Block001" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.85154, -0.696081, -11.4435)
+
+[node name="street_light2" parent="NavigationRegion3D/Map/Block001" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.158529, -0.696081, -11.4435)
+
+[node name="street_light3" parent="NavigationRegion3D/Map/Block001" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.63097, -0.696081, -11.4435)
+
+[node name="street_light4" parent="NavigationRegion3D/Map/Block001" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.367775, -0.696081, -11.4435)
+
+[node name="Block002" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1.02, 0)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Path2" type="CSGBox3D" parent="NavigationRegion3D/Map/Block002"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.99, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="CottageHouse2" parent="NavigationRegion3D/Map/Block002" instance=ExtResource("10_jh8yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.84002, 0.44827342, 18.346668)
+
+[node name="ModularShed" parent="NavigationRegion3D/Map/Block002" instance=ExtResource("11_mk0nq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.515732, -0.5889542, 19.266926)
+
+[node name="Block003" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 1.02, 0)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="street_light" parent="NavigationRegion3D/Map/Block003" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.54727, -2.2388535, -12.9896)
+
+[node name="street_light2" parent="NavigationRegion3D/Map/Block003" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.54727, -2.2388535, -12.9896)
+
+[node name="street_light3" parent="NavigationRegion3D/Map/Block003" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.547256, -2.2388535, -12.9896)
+
+[node name="street_light4" parent="NavigationRegion3D/Map/Block003" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4527435, -2.7022357, -12.9896)
+
+[node name="street_light5" parent="NavigationRegion3D/Map/Block003" instance=ExtResource("8_q6gni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.452744, -2.2388535, -12.9896)
+
+[node name="Block004" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -100, 1.02, 4.37114e-06)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block004"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block004"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block005" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -200, 1.02, -4.37114e-06)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block005"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block005"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block006" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 1.02, 100)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block006"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block006"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block007" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 1.02, 200)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block007"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block007"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block008" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 1.02, -100)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block008"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block008"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="Block009" type="Node3D" parent="NavigationRegion3D/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 1.02, -200)
+
+[node name="Path" type="CSGBox3D" parent="NavigationRegion3D/Map/Block009"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_l3wxn")
+
+[node name="Grass" type="CSGBox3D" parent="NavigationRegion3D/Map/Block009"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_8v7fq")
+
+[node name="TestVan" parent="." instance=ExtResource("15_l72xu")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 26.0661, 0.85279155, 0.66941345)
+
+[node name="CardboardBox" parent="." instance=ExtResource("16_nqahc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -8.497011, 2.1788597, -0.4310565)

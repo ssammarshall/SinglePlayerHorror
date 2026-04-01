@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Single Player Horror"
-run/main_scene="res://stages/stage_1.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="res://world/stages/stage_1.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://signal_bus.gd"
+Util="*res://util.gd"
+GameObjects="*res://game_objects.gd"
 
 [debug]
 
@@ -27,15 +28,42 @@ gdscript/warnings/unused_signal=0
 
 folder_colors={
 "res://actors/": "red",
-"res://assets/": "orange",
-"res://assets/doors/": "red",
-"res://assets/houses/": "blue",
-"res://assets/images/": "purple",
-"res://assets/lights/": "yellow",
+"res://actors/handlers/": "orange",
+"res://actors/monsters/": "purple",
+"res://actors/monsters/handlers/": "orange",
+"res://actors/player/": "blue",
+"res://actors/player/controllers/": "green",
+"res://actors/player/handlers/": "orange",
+"res://actors/player/handlers/interaction/": "yellow",
+"res://actors/player/handlers/interaction/images/": "purple",
+"res://actors/player/handlers/inventory/": "green",
+"res://camera_rigs/": "green",
 "res://imports/": "gray",
 "res://interaction/": "yellow",
-"res://stages/": "green",
-"res://ui/": "purple"
+"res://interaction/interactables/": "red",
+"res://interaction/interactables/display_interactables/": "orange",
+"res://interaction/interactables/display_interactables/displays/": "yellow",
+"res://interaction/interactables/items/": "green",
+"res://interaction/interactables/physics_interactables/": "purple",
+"res://interaction/interactables/physics_interactables/carry_interactables/": "red",
+"res://interaction/interactables/physics_interactables/carry_interactables/packages/": "gray",
+"res://interaction/interactables/physics_interactables/drag_interactables/": "blue",
+"res://interaction/interactables/physics_interactables/drag_interactables/doors/": "red",
+"res://interaction/interactables/physics_interactables/drag_interactables/doors/sliding_doors/": "yellow",
+"res://interaction/interactables/physics_interactables/drag_interactables/doors/standard_doors/": "green",
+"res://interaction/interactables/physics_interactables/drag_interactables/furniture/": "orange",
+"res://interaction/interactables/toggle_interactables/": "pink",
+"res://interaction/interactables/toggle_interactables/switches/": "orange",
+"res://interaction/vaulting/": "purple",
+"res://ui/": "purple",
+"res://vehicles/": "teal",
+"res://vehicles/displays/": "purple",
+"res://vehicles/displays/console/": "blue",
+"res://vehicles/displays/dashboard/": "red",
+"res://vehicles/systems/": "orange",
+"res://world/": "blue",
+"res://world/houses/": "green",
+"res://world/stages/": "red"
 }
 
 [input]
@@ -62,8 +90,7 @@ right={
 }
 interact={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
-, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
 sprint={
@@ -77,7 +104,7 @@ crouch={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
 ]
 }
-flashlight={
+light={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
 ]
@@ -107,15 +134,54 @@ inventory={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+rotate={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
+]
+}
+phone={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"location":0,"echo":false,"script":null)
+]
+}
+shift_gear_up={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+shift_gear_down={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+park={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+exit={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+back={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
-3d_render/layer_20="light_detection"
+3d_render/layer_20="Layer 20"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Item"
-3d_physics/layer_3="vault area"
-3d_physics/layer_4="interactable"
-3d_physics/layer_5="switch"
+3d_physics/layer_3="Vault Object"
+3d_physics/layer_4="Physics Interactable"
+3d_physics/layer_5="Toggle Interactable"
+3d_physics/layer_6="Display Interactable"
+3d_physics/layer_7="Control Zone"
+3d_physics/layer_8="Actor"
+3d_physics/layer_9="Vehicle"
 
 [physics]
 

@@ -1,0 +1,516 @@
+[gd_scene load_steps=50 format=3 uid="uid://ddq18l2e8cca5"]
+
+[ext_resource type="Script" uid="uid://b53vgljp4jpa" path="res://vehicles/vehicle.gd" id="1_kxs7w"]
+[ext_resource type="Script" uid="uid://kckn7rpd2u01" path="res://vehicles/systems/raycast_steering.gd" id="2_1eqy4"]
+[ext_resource type="Script" uid="uid://cnc0rwf522k8u" path="res://vehicles/displays/dashboard/dashboard.gd" id="2_ao21u"]
+[ext_resource type="Script" uid="uid://5eumrhvuvuph" path="res://vehicles/systems/touch_screen_console.gd" id="3_r7iq7"]
+[ext_resource type="Script" uid="uid://c85q3dnqb0y3y" path="res://vehicles/systems/raycast_suspension.gd" id="3_vo6jp"]
+[ext_resource type="Script" uid="uid://dfimsg1ydbrr1" path="res://vehicles/systems/raycast_braking.gd" id="4_hg70b"]
+[ext_resource type="Script" uid="uid://c8w8v8ryvoi3x" path="res://vehicles/displays/console/stops_menu.gd" id="4_hjjvy"]
+[ext_resource type="Script" uid="uid://8u18j8d14hwl" path="res://vehicles/systems/raycast_transmission.gd" id="4_k0a0x"]
+[ext_resource type="Script" uid="uid://bjfvrgkvyudw5" path="res://vehicles/systems/raycast_wheel.gd" id="5_kjlsh"]
+[ext_resource type="Script" uid="uid://bwimvkvbw5yhc" path="res://vehicles/displays/console/touch_screen_display.gd" id="7_ao21u"]
+[ext_resource type="Script" uid="uid://bhafwjrihtv10" path="res://vehicles/driver_seat.gd" id="9_poww4"]
+[ext_resource type="Script" uid="uid://c1yq6pf51ggb1" path="res://actors/handlers/movement/restricted_movement_area.gd" id="9_xq7gm"]
+[ext_resource type="PackedScene" uid="uid://b8f6u2lkgq0om" path="res://interaction/interactables/physics_interactables/drag_interactables/doors/sliding_doors/sliding_door1.tscn" id="10_sh1y7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hg70b"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sh1y7"]
+viewport_path = NodePath("Vehicle/Dashboard/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ao21u"]
+font_size = 50
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xq7gm"]
+viewport_path = NodePath("Vehicle/TouchScreenConsole/TouchScreenDisplay/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hjjvy"]
+viewport_path = NodePath("Vehicle/TouchScreenConsole/TouchScreenDisplay/OverviewSubViewport")
+
+[sub_resource type="Environment" id="Environment_5baiw"]
+background_color = Color(0.13817856, 0.5054805, 0.61133265, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5baiw"]
+size = Vector3(1.1, 1, 0.627)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hg70b"]
+size = Vector3(1.1, 1, 0.627)
+
+[sub_resource type="Curve" id="Curve_kxs7w"]
+_data = [Vector2(0, 1), 0.0, -1.9063855, 0, 0, Vector2(0.24723247, 0.47240257), -0.003898523, -0.003898523, 0, 0, Vector2(0.74538743, 0.45129865), -0.19999498, -0.19999498, 0, 0, Vector2(1, 0.113636255), 1.4790915, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_717p7"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjjvy"]
+size = Vector3(1.925, 1.254, 0.357)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xq7gm"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7ncw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itgp8"]
+albedo_color = Color(0.58550704, 0.360044, 0.13029063, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ifs15"]
+material = SubResource("StandardMaterial3D_itgp8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i07cg"]
+size = Vector3(2, 0.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_27k2v"]
+size = Vector3(2, 0.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04r3y"]
+size = Vector3(2, 0.4, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hf7e1"]
+size = Vector3(2, 0.4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gad7"]
+size = Vector3(2, 0.4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bp853"]
+size = Vector3(2, 0.4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfexx"]
+size = Vector3(4, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3mw0o"]
+size = Vector3(4, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3lhd"]
+size = Vector3(4, 2.6600342, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i1fco"]
+size = Vector3(4, 2.6600342, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_waqww"]
+size = Vector3(0.5, 2.499939, 7.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ptev3"]
+size = Vector3(0.5, 2.499939, 7.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hg70b"]
+size = Vector3(4, 0.5022461, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sh1y7"]
+size = Vector3(4, 0.5022461, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6pvk"]
+size = Vector3(0.4, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc8gh"]
+albedo_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3aadr"]
+material = SubResource("StandardMaterial3D_gc8gh")
+size = Vector3(0.4, 0.25, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ao21u"]
+size = Vector3(0.72683716, 0.1850586, 5.602295)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5baiw"]
+size = Vector3(0.72683716, 0.1850586, 5.602295)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sh1y7"]
+size = Vector3(4, 0.487, 7.8992615)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xq7gm"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="TestVan" type="Node3D"]
+
+[node name="Vehicle" type="RigidBody3D" parent="." node_paths=PackedStringArray("door", "door_marker", "driver_position_marker", "driver_exit_position_marker", "entrance", "headlights", "wheels")]
+collision_layer = 256
+collision_mask = 257
+mass = 1000.0
+physics_material_override = SubResource("PhysicsMaterial_hg70b")
+contact_monitor = true
+max_contacts_reported = 10
+angular_damp_mode = 1
+angular_damp = 10.0
+script = ExtResource("1_kxs7w")
+door = NodePath("../SlidingDoor1")
+door_marker = NodePath("DoorMarker")
+driver_position_marker = NodePath("DriverPosition")
+driver_exit_position_marker = NodePath("DriverExitPosition")
+entrance = NodePath("VehicleEntrance")
+headlights = [NodePath("SpotLight3D"), NodePath("SpotLight3D2")]
+wheels = [NodePath("FrontLeftWheel"), NodePath("FrontRightWheel"), NodePath("BackLeftWheel"), NodePath("BackRightWheel")]
+
+[node name="Dashboard" type="Sprite3D" parent="Vehicle"]
+transform = Transform3D(-0.1, 0, 1.509958e-08, 7.1025483e-09, 0.08824637, 0.047038052, -1.3324831e-08, 0.047038052, -0.08824637, 1.232861, 1.4710081, 5.403016)
+texture = SubResource("ViewportTexture_sh1y7")
+script = ExtResource("2_ao21u")
+
+[node name="SubViewport" type="SubViewport" parent="Vehicle/Dashboard"]
+size = Vector2i(800, 300)
+
+[node name="SpeedLabel" type="Label" parent="Vehicle/Dashboard/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Label Text
+"
+label_settings = SubResource("LabelSettings_ao21u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TouchScreenConsole" type="Area3D" parent="Vehicle"]
+transform = Transform3D(-1, 2.8116474e-08, 1.1672968e-07, 9.578054e-08, 0.77306575, 0.6343259, -7.240471e-08, 0.6343259, -0.77306575, 0.09909129, 1.123321, 5.224282)
+script = ExtResource("3_r7iq7")
+
+[node name="TouchScreenDisplay" type="Sprite3D" parent="Vehicle/TouchScreenConsole"]
+transform = Transform3D(0.1, 2.8116482e-09, -3.4266132e-09, -2.8116496e-09, 0.099999994, -3.7252903e-09, 3.4266145e-09, 3.7252903e-09, 0.099999994, 0, 0, 0)
+texture = SubResource("ViewportTexture_xq7gm")
+script = ExtResource("7_ao21u")
+
+[node name="SubViewport" type="SubViewport" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay"]
+size = Vector2i(1000, 750)
+
+[node name="Background" type="ColorRect" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(7.315874e-06, 0.7037392, 0.9670103, 1)
+
+[node name="Overview" type="TextureRect" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay/SubViewport"]
+custom_minimum_size = Vector2(512, 512)
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 537.0
+offset_bottom = 537.0
+scale = Vector2(0.7, 0.7)
+texture = SubResource("ViewportTexture_hjjvy")
+expand_mode = 1
+
+[node name="StopsMenu" type="ItemList" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay/SubViewport"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -366.0
+offset_right = 384.0
+offset_bottom = -127.0
+grow_vertical = 0
+max_text_lines = 2
+text_overrun_behavior = 0
+icon_mode = 0
+script = ExtResource("4_hjjvy")
+
+[node name="OverviewSubViewport" type="SubViewport" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay"]
+
+[node name="OverviewCameraRig" type="Node3D" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay/OverviewSubViewport"]
+
+[node name="OverviewCamera" type="Camera3D" parent="Vehicle/TouchScreenConsole/TouchScreenDisplay/OverviewSubViewport/OverviewCameraRig"]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0, 12, 0)
+cull_mask = 524287
+environment = SubResource("Environment_5baiw")
+fov = 90.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle/TouchScreenConsole"]
+transform = Transform3D(1, 1.8656536e-08, -1.6518626e-08, -1.8656525e-08, 1, -1.7881393e-07, 1.6518655e-08, 1.7881393e-07, 1, 1.4901161e-08, 0, -0.31958008)
+shape = SubResource("BoxShape3D_5baiw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/TouchScreenConsole/CollisionShape3D"]
+mesh = SubResource("BoxMesh_hg70b")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Vehicle"]
+transform = Transform3D(-0.9939163, 0.06165473, -0.09126448, 0.042544816, 0.97923774, 0.19820042, 0.10158962, 0.19311178, -0.9759034, -1, 0, 6.055488)
+layers = 524289
+light_energy = 5.0
+light_size = 0.079
+spot_range = 60.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Vehicle"]
+transform = Transform3D(-0.9939163, 0.06165473, -0.09126448, 0.042544816, 0.97923774, 0.19820042, 0.10158962, 0.19311178, -0.9759034, 1, 0, 6.055488)
+layers = 524289
+light_energy = 5.0
+light_size = 0.079
+spot_range = 60.0
+spot_attenuation = 2.0
+
+[node name="Braking" type="Node" parent="Vehicle"]
+script = ExtResource("4_hg70b")
+metadata/_custom_type_script = "uid://dfimsg1ydbrr1"
+
+[node name="Steering" type="Node" parent="Vehicle"]
+script = ExtResource("2_1eqy4")
+
+[node name="Suspension" type="Node" parent="Vehicle"]
+script = ExtResource("3_vo6jp")
+ride_height = 0.75
+
+[node name="Transmission" type="Node" parent="Vehicle"]
+script = ExtResource("4_k0a0x")
+acceleration_curve = SubResource("Curve_kxs7w")
+
+[node name="FrontLeftWheel" type="RayCast3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, -0.2, 5.5)
+script = ExtResource("5_kjlsh")
+use_as_steering = true
+use_as_traction = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/FrontLeftWheel"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.28012872, 0, 0)
+mesh = SubResource("CylinderMesh_717p7")
+
+[node name="FrontRightWheel" type="RayCast3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.2, 5.5)
+script = ExtResource("5_kjlsh")
+use_as_steering = true
+use_as_traction = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/FrontRightWheel"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.28, 0, 0)
+mesh = SubResource("CylinderMesh_717p7")
+
+[node name="BackLeftWheel" type="RayCast3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, -0.2, -3.5)
+script = ExtResource("5_kjlsh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/BackLeftWheel"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.28012872, 0, 0)
+mesh = SubResource("CylinderMesh_717p7")
+
+[node name="BackRightWheel" type="RayCast3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.2, -3.5)
+script = ExtResource("5_kjlsh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/BackRightWheel"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.28, 0, 0)
+mesh = SubResource("CylinderMesh_717p7")
+
+[node name="VehicleEntrance" type="Area3D" parent="Vehicle" node_paths=PackedStringArray("marker_1", "marker_2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4812026)
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("9_xq7gm")
+marker_1 = NodePath("exterior")
+marker_2 = NodePath("interior")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle/VehicleEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2089539, -0.42954636, -0.012817383)
+shape = SubResource("BoxShape3D_hjjvy")
+
+[node name="exterior" type="Marker3D" parent="Vehicle/VehicleEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1787996, -0.047685698, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/VehicleEntrance/exterior"]
+mesh = SubResource("SphereMesh_xq7gm")
+
+[node name="interior" type="Marker3D" parent="Vehicle/VehicleEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.639067, 1.2238972, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Vehicle/VehicleEntrance/interior"]
+mesh = SubResource("SphereMesh_xq7gm")
+skeleton = NodePath("../../exterior")
+
+[node name="DoorMarker" type="Marker3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4442511, 1.4211239, 4.7151265)
+
+[node name="DriverPosition" type="Marker3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2558889, 1.8681257, 4.4326396)
+
+[node name="DriverExitPosition" type="Marker3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112, 1.868, 4.433)
+
+[node name="DriverArea" type="Area3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2558889, 0.7348635, 4.4326396)
+script = ExtResource("9_poww4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle/DriverArea"]
+shape = SubResource("BoxShape3D_p7ncw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/DriverArea/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ifs15")
+
+[node name="floor_left" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+shape = SubResource("BoxShape3D_i07cg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/floor_left"]
+mesh = SubResource("BoxMesh_27k2v")
+
+[node name="floor_right" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_04r3y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/floor_right"]
+mesh = SubResource("BoxMesh_hf7e1")
+
+[node name="floor_right_front" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5.5)
+shape = SubResource("BoxShape3D_4gad7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/floor_right_front"]
+mesh = SubResource("BoxMesh_bp853")
+
+[node name="front_bottom" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 5.75)
+shape = SubResource("BoxShape3D_tfexx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/front_bottom"]
+mesh = SubResource("BoxMesh_3mw0o")
+
+[node name="back_bottom" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4800171, -3.75)
+shape = SubResource("BoxShape3D_g3lhd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/back_bottom"]
+mesh = SubResource("BoxMesh_i1fco")
+
+[node name="right_bottom" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.4442127, 0.25)
+shape = SubResource("BoxShape3D_waqww")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/right_bottom"]
+mesh = SubResource("BoxMesh_ptev3")
+
+[node name="left_bottom" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1.4442127, 0.25)
+shape = SubResource("BoxShape3D_waqww")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/left_bottom"]
+mesh = SubResource("BoxMesh_ptev3")
+
+[node name="roof" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9341788, 1)
+shape = SubResource("BoxShape3D_hg70b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/roof"]
+mesh = SubResource("BoxMesh_sh1y7")
+
+[node name="step1" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 0, 4.5)
+shape = SubResource("BoxShape3D_d6pvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/step1"]
+mesh = SubResource("BoxMesh_3aadr")
+
+[node name="step2" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.25, 4.5)
+shape = SubResource("BoxShape3D_d6pvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/step2"]
+mesh = SubResource("BoxMesh_3aadr")
+
+[node name="step3" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.5, 4.5)
+shape = SubResource("BoxShape3D_d6pvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/step3"]
+mesh = SubResource("BoxMesh_3aadr")
+
+[node name="step4" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, -0.75, 4.5)
+shape = SubResource("BoxShape3D_d6pvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/step4"]
+mesh = SubResource("BoxMesh_3aadr")
+
+[node name="step5" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -1, 4.5)
+shape = SubResource("BoxShape3D_d6pvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/step5"]
+mesh = SubResource("BoxMesh_3aadr")
+
+[node name="shelf1" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1343462, 1, -0.060668945)
+shape = SubResource("BoxShape3D_ao21u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/shelf1"]
+mesh = SubResource("BoxMesh_5baiw")
+
+[node name="shelf2" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.134, 1, -0.061)
+shape = SubResource("BoxShape3D_ao21u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/shelf2"]
+mesh = SubResource("BoxMesh_5baiw")
+
+[node name="shelf3" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1343462, 2, -0.060668945)
+shape = SubResource("BoxShape3D_ao21u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/shelf3"]
+mesh = SubResource("BoxMesh_5baiw")
+
+[node name="shelf4" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.134, 2, -0.061)
+shape = SubResource("BoxShape3D_ao21u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/shelf4"]
+mesh = SubResource("BoxMesh_5baiw")
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.643353, 0.0027252436)
+light_energy = 3.0
+spot_range = 25.0
+spot_angle = 65.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.643353, -2.2337818)
+light_energy = 3.0
+spot_range = 25.0
+spot_angle = 65.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.643353, 2.093896)
+light_energy = 3.0
+spot_range = 25.0
+spot_angle = 65.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47312614, -0.024154663)
+shape = SubResource("BoxShape3D_sh1y7")
+
+[node name="StrikePlate" type="Area3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4442508, 1.4211239, 5.4917955)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle/StrikePlate"]
+shape = SubResource("BoxShape3D_xq7gm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/StrikePlate"]
+mesh = SubResource("SphereMesh_xq7gm")
+
+[node name="SlidingLock" type="Area3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4297826, 1.4211239, 2.7747614)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vehicle/SlidingLock"]
+shape = SubResource("BoxShape3D_xq7gm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Vehicle/SlidingLock"]
+mesh = SubResource("SphereMesh_xq7gm")
+
+[node name="SlidingDoor1" parent="." node_paths=PackedStringArray("slide_joint", "sliding_lock", "strike_plate") instance=ExtResource("10_sh1y7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.444251, 1.4211239, 4.7151265)
+slide_joint = NodePath("DoorJoint")
+sliding_lock = NodePath("../Vehicle/SlidingLock")
+strike_plate = NodePath("../Vehicle/StrikePlate")
+
+[node name="DoorJoint" type="Generic6DOFJoint3D" parent="SlidingDoor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 0)
+node_a = NodePath("../../Vehicle")
+node_b = NodePath("../DoorPanel")
+linear_limit_z/lower_distance = -1.2
+
+[editable path="SlidingDoor1"]

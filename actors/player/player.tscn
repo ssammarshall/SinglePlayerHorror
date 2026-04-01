@@ -1,25 +1,32 @@
-[gd_scene load_steps=30 format=4 uid="uid://c6bllm7w61c4k"]
+[gd_scene load_steps=36 format=4 uid="uid://c6bllm7w61c4k"]
 
 [ext_resource type="Script" uid="uid://bgldpmstdq60k" path="res://actors/player/player.gd" id="1_nt586"]
-[ext_resource type="Script" uid="uid://cp010v0jqujqa" path="res://actors/components/interaction_handler.gd" id="2_eglrj"]
-[ext_resource type="Script" uid="uid://d4m8si3lcu2a5" path="res://actors/player/camera_rig.gd" id="2_ov830"]
-[ext_resource type="Script" uid="uid://cbe3xnit3rnfk" path="res://actors/components/movement_handler.gd" id="2_rt46e"]
-[ext_resource type="Script" uid="uid://bef26khsp6qa4" path="res://actors/player/flashlight.gd" id="3_1kxa6"]
-[ext_resource type="Script" uid="uid://b0e6a74fl1cho" path="res://ui/interaction_display.gd" id="5_boad6"]
-[ext_resource type="Texture2D" uid="uid://3y0oo6n6ss2e" path="res://assets/images/interact_dot.png" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://cp010v0jqujqa" path="res://actors/player/handlers/interaction/interaction_handler.gd" id="2_eglrj"]
+[ext_resource type="Script" uid="uid://d4m8si3lcu2a5" path="res://camera_rigs/camera_rig.gd" id="2_ov830"]
+[ext_resource type="Script" uid="uid://cbe3xnit3rnfk" path="res://actors/handlers/movement/movement_handler.gd" id="2_rt46e"]
+[ext_resource type="Script" uid="uid://b0e6a74fl1cho" path="res://actors/player/handlers/interaction/interaction_display.gd" id="5_boad6"]
+[ext_resource type="Texture2D" uid="uid://3y0oo6n6ss2e" path="res://actors/player/handlers/interaction/images/interact_dot.png" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://w1uwqq45pes3" path="res://ui/player_gui.gd" id="6_0wchr"]
-[ext_resource type="Texture2D" uid="uid://kk2y6r3pylre" path="res://assets/images/interact_circle.png" id="7_rgyib"]
-[ext_resource type="Texture2D" uid="uid://l8dxlidn3mi1" path="res://assets/images/key_icon.png" id="8_8t03j"]
-[ext_resource type="Script" uid="uid://cx7ggn6tjlfch" path="res://ui/inventory.gd" id="8_rgyib"]
-[ext_resource type="Texture2D" uid="uid://bgrpj1caxsr4" path="res://assets/images/locked.png" id="8_wodsf"]
-[ext_resource type="Texture2D" uid="uid://cm66ffa1inagd" path="res://assets/images/unlocked.png" id="9_32hag"]
-[ext_resource type="Script" uid="uid://eextnr1ig7pu" path="res://ui/inventory_slot.gd" id="9_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://ro1mqh8ig01m" path="res://assets/images/light_on.png" id="10_tqiix"]
-[ext_resource type="Script" uid="uid://cravcmalij2lb" path="res://actors/components/light_detection_handler.gd" id="11_2ieo8"]
-[ext_resource type="Texture2D" uid="uid://hc47xbkrlccf" path="res://assets/images/light_off.png" id="11_e7oew"]
+[ext_resource type="Texture2D" uid="uid://kk2y6r3pylre" path="res://actors/player/handlers/interaction/images/interact_circle.png" id="7_rgyib"]
+[ext_resource type="Texture2D" uid="uid://l8dxlidn3mi1" path="res://actors/player/handlers/interaction/images/key_icon.png" id="8_8t03j"]
+[ext_resource type="Script" uid="uid://cx7ggn6tjlfch" path="res://actors/player/handlers/inventory/inventory_handler.gd" id="8_rgyib"]
+[ext_resource type="Texture2D" uid="uid://bgrpj1caxsr4" path="res://actors/player/handlers/interaction/images/locked.png" id="8_wodsf"]
+[ext_resource type="Texture2D" uid="uid://cm66ffa1inagd" path="res://actors/player/handlers/interaction/images/unlocked.png" id="9_32hag"]
+[ext_resource type="Script" uid="uid://eextnr1ig7pu" path="res://actors/player/handlers/inventory/inventory_slot.gd" id="9_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://ro1mqh8ig01m" path="res://actors/player/handlers/interaction/images/light_on.png" id="10_tqiix"]
+[ext_resource type="Script" uid="uid://cravcmalij2lb" path="res://actors/handlers/light_detection_handler.gd" id="11_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://hc47xbkrlccf" path="res://actors/player/handlers/interaction/images/light_off.png" id="11_e7oew"]
+[ext_resource type="PackedScene" uid="uid://cclgme30jn4dd" path="res://actors/player/mobile_phone.tscn" id="18_qrxv1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hg6s5"]
-friction = 0.0
+friction = 0.01
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0wchr"]
+radius = 0.05
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrxv1"]
+albedo_color = Color(1, 0.0627451, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7hch"]
 radius = 0.2
@@ -27,6 +34,96 @@ radius = 0.2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5ako"]
 radius = 0.2
 height = 1.0
+
+[sub_resource type="Animation" id="Animation_qrxv1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.20620999, -0.2734621, -0.0029634237)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_otn2r"]
+resource_name = "phone_focus"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.11376631, -0.06795108, -0.15906736), Vector3(0, 0.000551492, -0.07274259)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dqf5y"]
+resource_name = "phone_take_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.20620999, -0.2734621, -0.0029634237), Vector3(0.11376631, -0.06795108, -0.15906736)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraRig/Base/SpringArm3D/Camera3D/MobilePhone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrxv1"]
+_data = {
+&"RESET": SubResource("Animation_qrxv1"),
+&"phone_focus": SubResource("Animation_otn2r"),
+&"phone_take_out": SubResource("Animation_dqf5y")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_rt46e"]
 font_size = 20
@@ -66,7 +163,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ic477")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ieo8"]
-albedo_color = Color(0.560955, 0.560955, 0.560955, 1)
+albedo_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
 
 [sub_resource type="Animation" id="Animation_8qbma"]
 length = 0.001
@@ -120,23 +217,31 @@ _data = {
 &"stand": SubResource("Animation_ceqa6")
 }
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("standing_collision", "crouching_collision", "crouching_ray_cast", "ground_ray_cast", "movement_handler", "foot_marker")]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("mesh", "standing_collision", "crouching_collision", "movement_handler", "light_detection_handler")]
+collision_layer = 128
+collision_mask = 385
 axis_lock_angular_x = true
-axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 80.0
 physics_material_override = SubResource("PhysicsMaterial_hg6s5")
-gravity_scale = 1.5
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_nt586")
+mesh = NodePath("Mesh")
 standing_collision = NodePath("StandingCollision")
 crouching_collision = NodePath("CrouchingCollision")
-crouching_ray_cast = NodePath("CrouchingCollision/CrouchingRayCast")
-ground_ray_cast = NodePath("StandingCollision/GroundRayCast")
 movement_handler = NodePath("MovementHandler")
-foot_marker = NodePath("FootMarker")
+light_detection_handler = NodePath("LightDetectionHandler")
+
+[node name="Mesh" type="Node3D" parent="."]
+visible = false
+
+[node name="DebugNose" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.52057755)
+mesh = SubResource("CapsuleMesh_0wchr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qrxv1")
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_n7hch")
@@ -153,8 +258,10 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 target_position = Vector3(0, 2.01, 0)
 
-[node name="MovementHandler" type="Node3D" parent="." node_paths=PackedStringArray("vaulting_raycast", "step_raycast", "step_height_raycast", "wall_raycast")]
+[node name="MovementHandler" type="Node3D" parent="." node_paths=PackedStringArray("crouching_ray_cast", "ground_ray_cast", "vaulting_raycast", "step_raycast", "step_height_raycast", "wall_raycast")]
 script = ExtResource("2_rt46e")
+crouching_ray_cast = NodePath("../CrouchingCollision/CrouchingRayCast")
+ground_ray_cast = NodePath("../StandingCollision/GroundRayCast")
 vaulting_raycast = NodePath("VaultingRaycast")
 step_raycast = NodePath("StepRaycast")
 step_height_raycast = NodePath("WallRaycast/StepHeightRaycast")
@@ -164,11 +271,10 @@ metadata/_custom_type_script = "uid://cbe3xnit3rnfk"
 [node name="VaultingRaycast" type="RayCast3D" parent="MovementHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 target_position = Vector3(0, 0, -1)
-collision_mask = 4
 
 [node name="StepRaycast" type="RayCast3D" parent="MovementHandler"]
-transform = Transform3D(1, -2.65169e-09, 2.76486e-10, -6.9079e-10, 1, 0, 4.22006e-10, 2.32831e-10, 1, 0, -1, 0)
-target_position = Vector3(0, 0, -0.25)
+transform = Transform3D(1, -2.65169e-09, 2.76486e-10, -6.9079e-10, 1, 0, 4.22006e-10, 2.32831e-10, 1, 0, -0.9, 0)
+target_position = Vector3(0, -0.1, -0.25)
 
 [node name="WallRaycast" type="RayCast3D" parent="MovementHandler"]
 transform = Transform3D(1, -2.65169e-09, 2.76486e-10, -6.9079e-10, 1, 0, 4.22006e-10, 2.32831e-10, 1, 4.67196e-10, -0.682385, -3.0268e-09)
@@ -181,7 +287,7 @@ target_position = Vector3(0, -0.312, 0)
 [node name="ui" type="CanvasLayer" parent="."]
 script = ExtResource("6_0wchr")
 
-[node name="interaction_display" type="Control" parent="ui" node_paths=PackedStringArray("dot", "circle", "locked", "unlocked", "light_on", "light_off", "lock_door", "unlock_door", "no_key")]
+[node name="InteractionDisplay" type="Control" parent="ui" node_paths=PackedStringArray("dot", "circle", "locked", "unlocked", "light_on", "light_off", "lock_door", "unlock_door", "no_key")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,7 +308,7 @@ lock_door = NodePath("lock door")
 unlock_door = NodePath("unlock door")
 no_key = NodePath("no key")
 
-[node name="dot" type="TextureRect" parent="ui/interaction_display"]
+[node name="dot" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -217,7 +323,7 @@ texture = ExtResource("5_qjkh3")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="circle" type="TextureRect" parent="ui/interaction_display"]
+[node name="circle" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -232,7 +338,7 @@ texture = ExtResource("7_rgyib")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="locked" type="TextureRect" parent="ui/interaction_display"]
+[node name="locked" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -247,7 +353,7 @@ texture = ExtResource("8_wodsf")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="unlocked" type="TextureRect" parent="ui/interaction_display"]
+[node name="unlocked" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -262,7 +368,7 @@ texture = ExtResource("9_32hag")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="light on" type="TextureRect" parent="ui/interaction_display"]
+[node name="light on" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -277,7 +383,7 @@ texture = ExtResource("10_tqiix")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="light off" type="TextureRect" parent="ui/interaction_display"]
+[node name="light off" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -292,7 +398,7 @@ texture = ExtResource("11_e7oew")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="lock door" type="TextureRect" parent="ui/interaction_display"]
+[node name="lock door" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -311,7 +417,7 @@ texture = ExtResource("8_8t03j")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="unlock door" type="TextureRect" parent="ui/interaction_display"]
+[node name="unlock door" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -330,7 +436,7 @@ texture = ExtResource("8_8t03j")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="no key" type="TextureRect" parent="ui/interaction_display"]
+[node name="no key" type="TextureRect" parent="ui/InteractionDisplay"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -349,11 +455,11 @@ texture = ExtResource("8_8t03j")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Timer" type="Timer" parent="ui/interaction_display"]
+[node name="Timer" type="Timer" parent="ui/InteractionDisplay"]
 wait_time = 0.5
 one_shot = true
 
-[node name="inventory" type="PanelContainer" parent="ui" node_paths=PackedStringArray("inventory_slots")]
+[node name="InventoryHandler" type="PanelContainer" parent="ui" node_paths=PackedStringArray("inventory_slots", "mobile_phone")]
 visible = false
 anchors_preset = 6
 anchor_left = 1.0
@@ -367,104 +473,111 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("8_rgyib")
 inventory_slots = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/Panel/slot_1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/Panel2/slot_2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Panel/slot_3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Panel2/slot_4"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Panel/slot_5"), NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Panel2/slot_6"), NodePath("MarginContainer/VBoxContainer/HBoxContainer4/Panel/slot_7"), NodePath("MarginContainer/VBoxContainer/HBoxContainer4/Panel2/slot_8")]
+mobile_phone = NodePath("../../CameraRig/Base/SpringArm3D/Camera3D/MobilePhone")
 
-[node name="MarginContainer" type="MarginContainer" parent="ui/inventory"]
+[node name="MarginContainer" type="MarginContainer" parent="ui/InventoryHandler"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/inventory/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/InventoryHandler/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="slot_1" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_hg6s5")
-
-[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="slot_2" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer/Panel2"]
+[node name="slot_1" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_hg6s5")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+[node name="Panel2" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_2" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Panel" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="slot_3" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2/Panel"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_hg6s5")
-
-[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="slot_4" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer2/Panel2"]
+[node name="slot_3" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer2/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_hg6s5")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+[node name="Panel2" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_4" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Panel" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="slot_5" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3/Panel"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_hg6s5")
-
-[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="slot_6" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer3/Panel2"]
+[node name="slot_5" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer3/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_hg6s5")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="ui/inventory/MarginContainer/VBoxContainer"]
+[node name="Panel2" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="slot_6" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer3/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_hg6s5")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Panel" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="slot_7" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4/Panel"]
+[node name="slot_7" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer4/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_hg6s5")
 
-[node name="Panel2" type="PanelContainer" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Panel2" type="PanelContainer" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="slot_8" type="TextureRect" parent="ui/inventory/MarginContainer/VBoxContainer/HBoxContainer4/Panel2"]
+[node name="slot_8" type="TextureRect" parent="ui/InventoryHandler/MarginContainer/VBoxContainer/HBoxContainer4/Panel2"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("9_hg6s5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/InventoryHandler"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qrxv1")
+}
 
 [node name="ColorRect" type="ColorRect" parent="ui"]
 anchors_preset = 1
@@ -480,23 +593,44 @@ offset_bottom = 23.0
 text = "FPS"
 label_settings = SubResource("LabelSettings_rt46e")
 
-[node name="LightDetectionHandler" type="SubViewport" parent="." node_paths=PackedStringArray("follow_target", "light_detector", "dark_adaptation_light", "update_timer")]
+[node name="Controls" type="Label" parent="ui"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Take out phone - V
+Use phone - V (Hold)
+Flashlight - F (while using phone)
+Crouch - C
+Sprint - Shift
+Jump - Space
+Exit vehicle - Space (while parked)
+Pickup/Move objects - LMB
+Throw objects - RMB
+Charge throw - RMB (Hold)"
+horizontal_alignment = 2
+
+[node name="LightDetectionHandler" type="SubViewport" parent="." node_paths=PackedStringArray("camera", "dark_adaptation_light", "detection_mesh", "follow_target", "light_detector", "update_timer")]
 script = ExtResource("11_2ieo8")
-follow_target = NodePath("../CameraRig/Base")
-light_detector = NodePath("LightDetector")
+camera = NodePath("LightDetector/Camera3D")
 dark_adaptation_light = NodePath("../CameraRig/Base/SpringArm3D/Camera3D/DarkAdaptationLight")
+detection_mesh = NodePath("LightDetector/detection_mesh")
+follow_target = NodePath("../CameraRig/Base/SpringArm3D")
+light_detector = NodePath("LightDetector")
 update_timer = NodePath("Timer")
 
 [node name="LightDetector" type="Node3D" parent="LightDetectionHandler"]
-visible = false
 
 [node name="Camera3D" type="Camera3D" parent="LightDetectionHandler/LightDetector"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-cull_mask = 524288
 
 [node name="detection_mesh" type="MeshInstance3D" parent="LightDetectionHandler/LightDetector"]
 transform = Transform3D(1.23592, 0, 0.403124, 0, 1, 0, -0.403124, 0, 1.23592, -0.001, -0.606, 0.002)
-layers = 524288
 mesh = SubResource("ArrayMesh_2ieo8")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2ieo8")
@@ -504,9 +638,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2ieo8")
 [node name="Timer" type="Timer" parent="LightDetectionHandler"]
 wait_time = 0.1
 autostart = true
-
-[node name="FootMarker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CameraRig" type="Node" parent="."]
 script = ExtResource("2_ov830")
@@ -518,40 +649,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 spring_length = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/Base/SpringArm3D"]
-cull_mask = 524287
 current = true
 
-[node name="Flashlight" type="SpotLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.1, 0)
-light_color = Color(0.999998, 0.99883, 0.653463, 1)
-light_energy = 5.0
-light_volumetric_fog_energy = 8.0
-shadow_enabled = true
-distance_fade_enabled = true
-spot_range = 100.0
-spot_attenuation = 2.0
-spot_angle = 35.0
-spot_angle_attenuation = 3.60499
-script = ExtResource("3_1kxa6")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D/Flashlight"]
-layers = 524289
-light_color = Color(1, 1, 0.654902, 1)
-light_energy = 0.5
-omni_range = 1.0
-
-[node name="InteractionHandler" type="RayCast3D" parent="CameraRig/Base/SpringArm3D/Camera3D" node_paths=PackedStringArray("player", "interaction_display", "marker")]
+[node name="InteractionHandler" type="RayCast3D" parent="CameraRig/Base/SpringArm3D/Camera3D" node_paths=PackedStringArray("interaction_display")]
 target_position = Vector3(0, 0, -2)
-collision_mask = 31
 collide_with_areas = true
 script = ExtResource("2_eglrj")
-player = NodePath("../../../../..")
-interaction_display = NodePath("../../../../../ui/interaction_display")
-marker = NodePath("Marker3D")
+interaction_display = NodePath("../../../../../ui/InteractionDisplay")
 throw_charge_speed = 1.5
 
-[node name="Marker3D" type="Marker3D" parent="CameraRig/Base/SpringArm3D/Camera3D/InteractionHandler"]
-transform = Transform3D(1, 3.37394e-10, 0, -1.19655e-11, 1, -1.39698e-09, 4.36557e-11, 0, 1, -5.82077e-11, 2.98023e-08, -1.5)
+[node name="ObjectAnchor" type="Node3D" parent="CameraRig/Base/SpringArm3D/Camera3D/InteractionHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="ObjectMarker" type="Marker3D" parent="CameraRig/Base/SpringArm3D/Camera3D/InteractionHandler/ObjectAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.82077e-11, 2.9802322e-08, 0)
 
 [node name="DarkAdaptationLight" type="OmniLight3D" parent="CameraRig/Base/SpringArm3D/Camera3D"]
 light_color = Color(0.276946, 0.364545, 0.631735, 1)
@@ -563,6 +674,9 @@ distance_fade_enabled = true
 distance_fade_begin = 0.5
 distance_fade_length = 3.0
 omni_range = 3.0
+
+[node name="MobilePhone" parent="CameraRig/Base/SpringArm3D/Camera3D" instance=ExtResource("18_qrxv1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.20620999, -0.2734621, -0.0029634237)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraRig/Base"]
 root_node = NodePath("../../..")

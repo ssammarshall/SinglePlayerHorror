@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cclgme30jn4dd"]
+
+[ext_resource type="Script" uid="uid://c1nscnj2alimh" path="res://actors/player/mobile_phone.gd" id="1_x6e75"]
+[ext_resource type="Script" uid="uid://bef26khsp6qa4" path="res://actors/player/flashlight.gd" id="2_kqwde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfo5x"]
+albedo_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_etwq4"]
+material = SubResource("StandardMaterial3D_nfo5x")
+size = Vector3(0.08, 0.1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ltuy"]
+albedo_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_jslwh"]
+material = SubResource("StandardMaterial3D_7ltuy")
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jhcpd"]
+viewport_path = NodePath("MeshInstance3D/Screen/SubViewport")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mxpkk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b52hr"]
+width = 750
+height = 920
+noise = SubResource("FastNoiseLite_mxpkk")
+
+[node name="MobilePhone" type="Node3D"]
+script = ExtResource("1_x6e75")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_etwq4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019086033, 0.025167838, -0.008852605)
+mesh = SubResource("BoxMesh_jslwh")
+
+[node name="Screen" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0.006)
+texture = SubResource("ViewportTexture_jhcpd")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D/Screen"]
+size = Vector2i(750, 920)
+
+[node name="Control" type="Control" parent="MeshInstance3D/Screen/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MeshInstance3D/Screen/SubViewport/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_b52hr")
+
+[node name="Flashlight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019086033, 0.025167838, -0.014023915)
+visible = false
+light_color = Color(1, 1, 0.87058824, 1)
+light_energy = 9.0
+light_volumetric_fog_energy = 4.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 25.0
+spot_attenuation = 2.0
+spot_angle = 35.0
+spot_angle_attenuation = 3.60499
+script = ExtResource("2_kqwde")
+strength = 9.0

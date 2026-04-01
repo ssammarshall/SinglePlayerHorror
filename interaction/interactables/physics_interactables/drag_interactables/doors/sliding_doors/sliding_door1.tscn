@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8f6u2lkgq0om"]
+
+[ext_resource type="Script" uid="uid://bhj1d7vh1ylrx" path="res://interaction/interactables/physics_interactables/drag_interactables/doors/sliding_doors/sliding_door.gd" id="1_nr3wj"]
+[ext_resource type="Script" uid="uid://cqlqbx866ejg" path="res://interaction/interactables/physics_interactables/drag_interactables/drag_interactable.gd" id="2_n853o"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1pb07"]
+friction = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_imisj"]
+size = Vector3(0.048, 2, 1.549)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nr3wj"]
+size = Vector3(0.048, 2, 1.549)
+
+[node name="SlidingDoor1" type="Node3D" node_paths=PackedStringArray("door_panel", "strike_plate")]
+script = ExtResource("1_nr3wj")
+door_panel = NodePath("DoorPanel")
+strike_plate = NodePath("")
+
+[node name="DoorPanel" type="RigidBody3D" parent="."]
+mass = 15.0
+physics_material_override = SubResource("PhysicsMaterial_1pb07")
+script = ExtResource("2_n853o")
+drag_speed = 50.0
+metadata/_custom_type_script = "uid://cqlqbx866ejg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPanel"]
+shape = SubResource("BoxShape3D_imisj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorPanel"]
+mesh = SubResource("BoxMesh_nr3wj")

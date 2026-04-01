@@ -1,15 +1,49 @@
-rotate carry objects
+Need complete overhaul: actors/monsters
 
-light bulb should change color when off
+Probably gonna break with new van model (once van facing correct forward):
+	vehicle controller mesh facing direction
+	raycast transmission drive/reverse directions
+	sliding door positions in vehicle.gd
+	player.gd enter vehicle global rotation
 
-swinging lights/grabbable
 
-inventory handler class
+Streamline camera rigs / cameras to auto disable all cull layers.
 
-hide in cabinets:
-	cabinet collision needs to be fixed
+High Priority:
+	Change wheels from raycasts to shapecasts for better wheel performance.
 	
-	works while standing after crouching at least once; doesn't work while crouching:
+	Touch screen display:
+		Map:
+			create map pieces that have no collision, only on render layer MAP, later can add terrain info to detect noise level/sound type
+			create map camera for touch screen display that only sees render layer MAP
+		Backup camera w/ overview camera on sides
+	Dashboard:
+		Show acceleration/odometer/gear
+	
+	Packages:
+		vars for address, package_id#
+	Houses:
+		Frontyard area3d looking for package/item with correct package_id#
+	
+	phone apps: find my keys, find my car, find package, scan package, take photo, take photo of package (to complete order), map
+	headlamp: double tap f (if equipped/unlocked)
+	carriable objects: scroll mouse wheel to move objects closer/further away
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Low priority:
+	swinging lights/grabbable
 
 monster:
 	player detection:
@@ -32,21 +66,7 @@ sounds:
 	monster sounds
 	scary chase and ambient sounds/music
 
-main hub room: bedroom in house
-parts of house blocked off for safety
-monsters can still enter other parts of house to surprise player (followed/watched player go home?)
-
-bedroom contents:
-	bed to save game
-	computer for upgrades?
-	pet dog/cat?
-	mini fridge
-	lockable door with peephole
-	boarded up window with peephole
-	lightswitch
-	can hide under bed or in closet (monster can hide in closet?)
-
-main game loop idea:
+(previous) main game loop idea:
 	wander neighborhood to gather supplies, items and upgrades:
 		supplies: food, pet food, water, lights
 		items: keys, throwables
@@ -57,3 +77,17 @@ main game loop idea:
 		some doors inside houses are also locked and need keys
 	parts of neighborhood blocked by monsters:
 		find correct item and/or solve puzzle to either kill/distract/sneak by monster
+	
+	main hub room: bedroom in house
+	parts of house blocked off for safety
+	monsters can still enter other parts of house to surprise player (followed/watched player go home?)
+	
+	bedroom contents:
+		bed to save game
+		computer for upgrades?
+		pet dog/cat?
+		mini fridge
+		lockable door with peephole
+		boarded up window with peephole
+		lightswitch
+		can hide under bed or in closet (monster can hide in closet?)

@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqynxu4bbv8ju"]
+
+[ext_resource type="PackedScene" uid="uid://ddq18l2e8cca5" path="res://vehicles/test_van.tscn" id="1_umu8s"]
+[ext_resource type="PackedScene" uid="uid://c6bllm7w61c4k" path="res://actors/player/player.tscn" id="2_crue0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_crue0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ctd0f"]
+sky_material = SubResource("ProceduralSkyMaterial_crue0")
+
+[sub_resource type="Environment" id="Environment_daspq"]
+background_mode = 2
+sky = SubResource("Sky_ctd0f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crue0"]
+albedo_color = Color(0.57700837, 0.5770084, 0.57700837, 1)
+
+[node name="Stage2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_daspq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(1000, 2, 1000)
+
+[node name="road1" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -100, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -50, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 50, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 100, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.371139e-06, -1, 100)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1855694e-06, -1, 50)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1855694e-06, -1, -50)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="road10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.371139e-06, -1, -100)
+use_collision = true
+size = Vector3(800, 2.01, 16)
+material = SubResource("StandardMaterial3D_crue0")
+
+[node name="TestVan" parent="." instance=ExtResource("1_umu8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3050356, 1.1449809, -9.135994)
+
+[node name="Player" parent="." instance=ExtResource("2_crue0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4645407, 2.3813322, -5.0819826)

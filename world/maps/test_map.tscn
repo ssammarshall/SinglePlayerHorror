@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://dbf42n4uqsff5"]
+
+[ext_resource type="Script" uid="uid://b7v0eshgwfb0a" path="res://world/maps/map_block.gd" id="1_cbqal"]
+[ext_resource type="Texture2D" uid="uid://dsxqgde1fg1pc" path="res://imports/textures/concrete_rock_path_diff_2k.png" id="1_sswgm"]
+[ext_resource type="Texture2D" uid="uid://b2k1b21673rnu" path="res://imports/textures/concrete_rock_path_nor_dx_2k.png" id="2_q42gp"]
+[ext_resource type="Texture2D" uid="uid://b7e68nygs47rl" path="res://imports/textures/concrete_rock_path_rough_2k.png" id="3_vctyv"]
+[ext_resource type="Texture2D" uid="uid://b0wj0j3bwpoy3" path="res://imports/textures/sparse_grass_diff_2k.png" id="4_h3vfd"]
+[ext_resource type="Texture2D" uid="uid://cqqym1y0e0rfn" path="res://imports/textures/sparse_grass_nor_dx_2k.png" id="5_nxn3g"]
+[ext_resource type="Texture2D" uid="uid://bl8y86pn1he2u" path="res://imports/textures/sparse_grass_rough_2k.png" id="6_uuwe7"]
+[ext_resource type="PackedScene" uid="uid://bew04xyo0bgtt" path="res://interaction/lights/street_light.tscn" id="7_k3tei"]
+[ext_resource type="PackedScene" uid="uid://c6bllm7w61c4k" path="res://actors/player/player.tscn" id="9_vctyv"]
+[ext_resource type="PackedScene" uid="uid://ddq18l2e8cca5" path="res://vehicles/test_van.tscn" id="10_h3vfd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h3vfd"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_nxn3g"]
+sky_material = SubResource("ProceduralSkyMaterial_h3vfd")
+
+[sub_resource type="Environment" id="Environment_uuwe7"]
+background_mode = 2
+sky = SubResource("Sky_nxn3g")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qishg"]
+albedo_texture = ExtResource("1_sswgm")
+roughness_texture = ExtResource("3_vctyv")
+normal_enabled = true
+normal_texture = ExtResource("2_q42gp")
+uv2_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6c48"]
+albedo_texture = ExtResource("4_h3vfd")
+roughness_texture = ExtResource("6_uuwe7")
+normal_enabled = true
+normal_texture = ExtResource("5_nxn3g")
+uv2_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uuwe7"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3vfd"]
+albedo_color = Color(0.09926536, 0.2582615, 0.5190529, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxn3g"]
+albedo_color = Color(0.37518588, 0.58671105, 0.93002635, 1)
+
+[node name="TestMap" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uuwe7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="Path" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01999998, 0)
+use_collision = true
+size = Vector3(100, 1, 20)
+material = SubResource("StandardMaterial3D_qishg")
+
+[node name="Grass" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_c6c48")
+
+[node name="street_light" parent="." instance=ExtResource("7_k3tei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.94947, 0.323919, -11.4435)
+
+[node name="street_light2" parent="." instance=ExtResource("7_k3tei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.256458, 0.323919, -11.4435)
+
+[node name="street_light3" parent="." instance=ExtResource("7_k3tei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.533041, 0.323919, -11.4435)
+
+[node name="street_light4" parent="." instance=ExtResource("7_k3tei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.269844, 0.323919, -11.4435)
+
+[node name="Player" parent="." instance=ExtResource("9_vctyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.116529, 3.3804817, 3.212105)
+
+[node name="TestVan" parent="." instance=ExtResource("10_h3vfd")]
+transform = Transform3D(-0.3899438, 0, 0.92083865, 0, 1, 0, -0.92083865, 0, -0.3899438, -11.95503, 1.4039934, 5.0625477)
+
+[node name="MapBlock" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.387847, 1.4540768, 5.704029)
+visible = false
+size = Vector3(14.396973, 1, 10.535645)
+material = SubResource("StandardMaterial3D_uuwe7")
+script = ExtResource("1_cbqal")
+metadata/_custom_type_script = "uid://b7v0eshgwfb0a"
+
+[node name="MapBlock2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01999998, 0)
+visible = false
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_h3vfd")
+script = ExtResource("1_cbqal")
+metadata/_custom_type_script = "uid://b7v0eshgwfb0a"
+
+[node name="MapBlock3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999999, 0)
+visible = false
+material = SubResource("StandardMaterial3D_nxn3g")
+script = ExtResource("1_cbqal")
+metadata/_custom_type_script = "uid://b7v0eshgwfb0a"
